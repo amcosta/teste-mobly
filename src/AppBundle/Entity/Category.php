@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Category
@@ -32,6 +34,7 @@ class Category
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=150, unique=true)
+     * @Gedmo\Slug(fields={"name"})
      */
     private $slug;
 
@@ -39,6 +42,7 @@ class Category
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
@@ -46,9 +50,16 @@ class Category
      * @var \DateTime
      *
      * @ORM\Column(name="updated", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updated;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Product", mappedBy="categories")
+     */
+    private $products;
 
     /**
      * Get id
@@ -64,14 +75,10 @@ class Category
      * Set name
      *
      * @param string $name
-     *
-     * @return Category
      */
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -88,14 +95,10 @@ class Category
      * Set slug
      *
      * @param string $slug
-     *
-     * @return Category
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
-
-        return $this;
     }
 
     /**
@@ -109,20 +112,6 @@ class Category
     }
 
     /**
-     * Set created
-     *
-     * @param \DateTime $created
-     *
-     * @return Category
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
      * Get created
      *
      * @return \DateTime
@@ -130,20 +119,6 @@ class Category
     public function getCreated()
     {
         return $this->created;
-    }
-
-    /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     *
-     * @return Category
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
     }
 
     /**

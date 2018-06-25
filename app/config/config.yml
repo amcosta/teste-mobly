@@ -69,3 +69,9 @@ swiftmailer:
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/../src/AppBundle/Migrations"
     namespace: "AppBundle\\Migrations"
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+            timestampable: true

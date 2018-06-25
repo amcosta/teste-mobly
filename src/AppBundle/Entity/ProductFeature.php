@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * ProductFeature
@@ -32,6 +33,7 @@ class ProductFeature
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
@@ -39,9 +41,23 @@ class ProductFeature
      * @var \DateTime
      *
      * @ORM\Column(name="updated", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updated;
 
+    /**
+     * @var Product
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product", inversedBy="features")
+     */
+    private $product;
+
+    /**
+     * @var Feature
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Feature", cascade={"persist"})
+     */
+    private $feature;
 
     /**
      * Get id
@@ -57,14 +73,10 @@ class ProductFeature
      * Set featureValue
      *
      * @param string $featureValue
-     *
-     * @return ProductFeature
      */
     public function setFeatureValue($featureValue)
     {
         $this->featureValue = $featureValue;
-
-        return $this;
     }
 
     /**
@@ -78,20 +90,6 @@ class ProductFeature
     }
 
     /**
-     * Set created
-     *
-     * @param \DateTime $created
-     *
-     * @return ProductFeature
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
      * Get created
      *
      * @return \DateTime
@@ -102,20 +100,6 @@ class ProductFeature
     }
 
     /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     *
-     * @return ProductFeature
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
-    }
-
-    /**
      * Get updated
      *
      * @return \DateTime
@@ -123,6 +107,38 @@ class ProductFeature
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * @return Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     */
+    public function setProduct($product)
+    {
+        $this->product = $product;
+    }
+
+    /**
+     * @return Feature
+     */
+    public function getFeature()
+    {
+        return $this->feature;
+    }
+
+    /**
+     * @param Feature $feature
+     */
+    public function setFeature($feature)
+    {
+        $this->feature = $feature;
     }
 }
 

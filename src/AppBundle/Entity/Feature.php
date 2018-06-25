@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Feature
@@ -29,16 +30,10 @@ class Feature
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=150, unique=true)
-     */
-    private $slug;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
@@ -46,9 +41,9 @@ class Feature
      * @var \DateTime
      *
      * @ORM\Column(name="updated", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updated;
-
 
     /**
      * Get id
@@ -64,14 +59,10 @@ class Feature
      * Set name
      *
      * @param string $name
-     *
-     * @return Feature
      */
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -85,44 +76,6 @@ class Feature
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Feature
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set created
-     *
-     * @param \DateTime $created
-     *
-     * @return Feature
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
      * Get created
      *
      * @return \DateTime
@@ -130,20 +83,6 @@ class Feature
     public function getCreated()
     {
         return $this->created;
-    }
-
-    /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     *
-     * @return Feature
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
     }
 
     /**
