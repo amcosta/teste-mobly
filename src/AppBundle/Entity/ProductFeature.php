@@ -140,5 +140,10 @@ class ProductFeature
     {
         $this->feature = $feature;
     }
+
+    public function getFeatureName()
+    {
+        return $this->feature->getName();
+    }
 }
 

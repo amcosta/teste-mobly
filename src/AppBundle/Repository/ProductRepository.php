@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Product;
+
 /**
  * ProductRepository
  *
@@ -10,4 +12,20 @@ namespace AppBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function similarProducts(Product $product)
+    {
+        $query = $this->createQueryBuilder('product');
+
+        $query->join('product.categories', 'category');
+
+        $query->where(
+            $query->expr()->in('category', ':productCategories'),
+            'product.id <> :id'
+        );
+
+        $query->setParameter('productCategories', $product->getCategories());
+        $query->setParameter('id', $product->getId());
+
+        return $query->getQuery()->getResult();
+    }
 }

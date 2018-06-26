@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row product-detail-wrapper">
+            <div class="col-md-4 product-image">
+                <img src="http://via.placeholder.com/250x350" />
+            </div>
+            <div class="col-md-8">
+                <h2>{{ product.name }}</h2>
+
+                <p>R$ {{ product.price | number_format(2, ',', '.') }}</p>
+
+                <ul>
+                    {% for feature in product.features %}
+                    <li><strong>{{ feature.featureName }}: </strong> {{ feature.featureValue }}</li>
+                    {% endfor %}
+                </ul>
+
+                <button class="btn btn-success">Comprar</button>
+            </div>
+
+            <div class="col-xs-12">
+                {{ product.description }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Produtos semelhantes</h2>
+            </div>
+
+            {% for similarProduct in similarProducts %}
+                {% include "product/product-box.html.twig" with {'product': similarProduct} %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
