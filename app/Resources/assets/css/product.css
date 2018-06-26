@@ -1,0 +1,11 @@
+.product-box {
+  text-align: center; }
+  .product-box .product-price {
+    display: block;
+    font-size: 1.3em; }
+  .product-box .product-title {
+    display: block; }
+    .product-box .product-title a {
+      color: #000; }
+  .product-box img {
+    margin: auto; }
