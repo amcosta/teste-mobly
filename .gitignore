@@ -18,3 +18,5 @@
 .idea
 .env
 docker/data/*
+node_modules
+web/assets/*
