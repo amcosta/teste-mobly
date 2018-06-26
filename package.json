@@ -1,0 +1,26 @@
+{
+  "name": "teste-mobly",
+  "version": "1.0.0",
+  "description": "Teste de entrevista para a Mobly",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node app",
+    "postinstall": "gulp default",
+    "gulp": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "jquery": "^1.12.4",
+    "jquery-mask-plugin": "^1.14.8"
+  },
+  "devDependencies": {
+    "gulp-sass": "^4.0.1"
+  }
+}
