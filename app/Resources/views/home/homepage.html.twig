@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Produtos em destaque</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-3 product-box">
+                <a href="{{ product.slug }}" title="{{ product.name }}">
+                    <img src="http://via.placeholder.com/150x200" alt="{{ product.name }}" />
+                </a>
+                <div class="product-info">
+                    <h4 class="product-title">
+                        <a href="{{ product.slug }}" title="{{ product.name }}">{{ product.name }}</a>
+                    </h4>
+                    <span class="product-price">R$ {{ product.price }}</span>
+                    <button class="btn btn-success">Comprar</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

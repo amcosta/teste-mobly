@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Category;
+use AppBundle\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -14,10 +14,11 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+        shuffle($products);
 
-        return $this->render('home/index.html.twig', [
-            'categories' => $categories
+        return $this->render('home/homepage.html.twig', [
+            'products' => array_slice($products, 0, 4)
         ]);
     }
 }
