@@ -130,5 +130,10 @@ class Category
     {
         return $this->updated;
     }
+
+    public function getProducts()
+    {
+        return $this->products;
+    }
 }
 

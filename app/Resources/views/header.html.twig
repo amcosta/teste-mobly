@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     {% for category in categories %}
-                        <li><a href="{{ category.slug }}">{{ category.name }}</a></li>
+                        <li><a href="{{ url('search-by-category', {'slug': category.slug}) }}" title="{{ category.name }}">{{ category.name }}</a></li>
                     {% endfor %}
                     <li><a href="#">Link</a></li>
                 </ul>

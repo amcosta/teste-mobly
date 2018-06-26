@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Categoria: {{ category.name }}</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">Filtro</div>
+            <div class="col-md-10">
+                {% for product in products %}
+                    <div class="col-xs-4">
+                        {% include "product/product-box.html.twig" %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
