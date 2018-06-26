@@ -32,7 +32,9 @@
             </div>
 
             {% for similarProduct in similarProducts %}
-                {% include "product/product-box.html.twig" with {'product': similarProduct} %}
+                <div class="col-md-3">
+                    {% include "product/product-box.html.twig" with {'product': similarProduct} %}
+                </div>
             {% endfor %}
         </div>
     </div>
