@@ -27,13 +27,13 @@ gulp.task('vendorCSS',function(){
 });
 
 gulp.task('sass', function () {
-    return gulp.src(srcBasePath + 'scss/**/*.scss')
+    return gulp.src(srcBasePath + 'sass/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(srcBasePath + 'css'));
 });
 
 gulp.task('css', ['sass'], function(){
-    gulp.src(srcBasePath + 'css')
+    gulp.src(srcBasePath + 'css/*.css')
         .pipe(concat('app.css'))
         .pipe(gulp.dest(dstBasePath + 'css'));
 });
