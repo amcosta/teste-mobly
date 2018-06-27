@@ -127,7 +127,8 @@ class ProductFixture extends Fixture
             ],
             'categories' => [
                 'html',
-                'css'
+                'css',
+                'front-end'
             ]
         ]
     ];
