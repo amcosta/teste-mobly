@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class CartItemTest extends TestCase
 {
-    public function testValidData()
+    public function testBuildAValidItem()
     {
         $product = $this->createMock(ProductInterface::class);
         $product->method('getName')->willReturn('Item 1');
@@ -31,7 +31,7 @@ class CartItemTest extends TestCase
         $this->assertEquals(30, $cartItem->calculateTotal());
     }
 
-    public function testInvalidData()
+    public function testManagerInvalidDataToBuildACartItem()
     {
         $product = $this->createMock(ProductInterface::class);
         $product->method('getName')->willReturn('Item 1');
@@ -44,6 +44,39 @@ class CartItemTest extends TestCase
 
         $this->assertEquals('Item 1', $cartItem->getProductName());
         $this->assertEquals(10, $cartItem->getProductPrice());
+        $this->assertEquals(0, $cartItem->calculateTotal());
+    }
+
+    public function testHelperMethods()
+    {
+        $product = $this->createMock(ProductInterface::class);
+        $product->method('getName')->willReturn('Item 1');
+        $product->method('getPrice')->willReturn(10);
+
+        $cartItem = new CartItem();
+
+        $cartItem->setProduct($product);
+        $cartItem->setQuantity(2);
+
+        $cartItem->increment();
+        $this->assertEquals(30, $cartItem->calculateTotal());
+
+        $cartItem->increment();
+        $this->assertEquals(40, $cartItem->calculateTotal());
+
+        $cartItem->decrement();
+        $this->assertEquals(30, $cartItem->calculateTotal());
+
+        $cartItem->decrement();
+        $this->assertEquals(20, $cartItem->calculateTotal());
+
+        $cartItem->decrement();
+        $cartItem->decrement();
+        $cartItem->decrement();
+        $cartItem->decrement();
+        $cartItem->decrement();
+        $cartItem->decrement();
+
         $this->assertEquals(0, $cartItem->calculateTotal());
     }
 }

@@ -45,7 +45,7 @@ class Cart
     {
         $key = $this->searchItem($cartItem);
 
-        if (false === $key) {
+        if (false !== $key) {
             $this->items[$key] = $cartItem;
         }
     }
