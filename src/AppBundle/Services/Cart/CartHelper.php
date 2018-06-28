@@ -41,21 +41,30 @@ class CartHelper
     {
         $cart = $this->getCart();
 
-        $cartItem = new CartItem();
-        $cartItem->setProduct($product);
-        $cartItem->setQuantity(1);
+        $cartItem = CartItemBuilder::build($product, 1);
 
         $cart->addItem($cartItem);
 
         $this->saveCart($cart);
     }
 
-    public function increment(ProductInterface $product)
+    public function update(ProductInterface $product, $quantity)
     {
         $cart = $this->getCart();
-        $cart->increment($product);
-        $cart->addItem($cartItem);
+
+        $cartItem = CartItemBuilder::build($product, $quantity);
+
+        $cart->updateItem($cartItem);
 
         $this->saveCart($cart);
+    }
+
+    public function removeItem(ProductInterface $product)
+    {
+        $cart = $this->getCart();
+
+        $cartItem = CartItemBuilder::build($product);
+
+        $cart->removeItem($cartItem);
     }
 }

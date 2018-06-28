@@ -29,10 +29,10 @@
                                 <td class="text-center">R$ {{ item.productPrice | number_format(2, ',', '.') }}</td>
                                 <td class="text-center">
                                     {% if (item.quantity > 0) %}
-                                        <a href="#">-</a>
+                                        <a href="{{ url('cart-update-quantity', {'id': item.productId, 'quantity': item.quantity - 1}) }}">-</a>
                                     {% endif %}
                                     {{ item.quantity }}
-                                    <a href="#">+</a>
+                                    <a href="{{ url('cart-update-quantity', {'id': item.productId, 'quantity': item.quantity + 1}) }}">+</a>
                                 </td>
                                 <td class="text-center">R$ {{ item.calculateTotal | number_format(2, ',', '.') }}</td>
                                 <td>Remover</td>

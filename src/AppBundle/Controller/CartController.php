@@ -22,14 +22,18 @@ class CartController extends Controller
     }
 
     /**
-     * @Route(path="carrinho/aumentar-quantidade/{id}", name="cart-increment-quantity")
+     * @Route(path="carrinho/atualizar-quantidade/{id}/{quantity}", name="cart-update-quantity")
      *
      * @param Product $product
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function incrementItem(Product $product)
+    public function updateQuantity(Product $product, $quantity)
     {
-        $this->get('app.cart.helper')->addItem($product);
+        if ($quantity <= 0) {
+            $this->get('app.cart.helper')->removeItem($product);
+        } else {
+            $this->get('app.cart.helper')->update($product, $quantity);
+        }
 
         return $this->redirectToRoute('cart-index');
     }
