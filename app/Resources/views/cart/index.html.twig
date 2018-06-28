@@ -35,7 +35,10 @@
                                     <a href="{{ url('cart-update-quantity', {'id': item.productId, 'quantity': item.quantity + 1}) }}">+</a>
                                 </td>
                                 <td class="text-center">R$ {{ item.calculateTotal | number_format(2, ',', '.') }}</td>
-                                <td>Remover</td>
+                                <td>
+                                    <a href="{{ url('cart-remove-item', {'id': item.productId}) }}"
+                                       class="btn btn-danger">Remover</a>
+                                </td>
                             </tr>
                         {% endfor %}
 

@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class CartController extends Controller
 {
     /**
-     * @Route(path="carrinho/adicionar-item/{id}", name="cart-add-item", methods={"GET"})
+     * @Route(path="carrinho/adicionar-item/{id}", name="cart-add-item", methods={"GET"}, requirements={"id": "\d+"})
      *
      * @param Product $product
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -22,7 +22,12 @@ class CartController extends Controller
     }
 
     /**
-     * @Route(path="carrinho/atualizar-quantidade/{id}/{quantity}", name="cart-update-quantity")
+     * @Route(
+     *     path="carrinho/atualizar-quantidade/{id}/{quantity}",
+     *     name="cart-update-quantity",
+     *     requirements={"id": "\d+", "quantity": "\d+"},
+     *     methods={"GET"}
+     * )
      *
      * @param Product $product
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -34,6 +39,19 @@ class CartController extends Controller
         } else {
             $this->get('app.cart.helper')->update($product, $quantity);
         }
+
+        return $this->redirectToRoute('cart-index');
+    }
+
+    /**
+     * @Route(path="carrinho/remover-item/{id}", methods={"GET"}, requirements={"id": "\d+"}, name="cart-remove-item")
+     *
+     * @param Product $product
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function removeItem(Product $product)
+    {
+        $this->get('app.cart.helper')->removeItem($product);
 
         return $this->redirectToRoute('cart-index');
     }
