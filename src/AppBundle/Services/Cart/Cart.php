@@ -12,10 +12,10 @@ class Cart
 {
     /**
      * @var array
+     *
+     * @Serializer\Type("AppBundle\Services\Cart\CartItem")
      */
     private $items = [];
-
-    private $user;
 
     public function addItem(CartItem $cartItem)
     {
@@ -78,6 +78,10 @@ class Cart
         }
 
         return false;
-//        return array_search($cartItem, $this->items);
+    }
+
+    public function getItems()
+    {
+        return $this->items;
     }
 }

@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Carrinho</h1>
+            </div>
+        </div>
+
+        {% if cart.count > 0 %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th class="text-center">Valor Unitário</th>
+                            <th class="text-center">Quantidade</th>
+                            <th class="text-center">SubTotal</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for item in cart.items %}
+                            <tr>
+                                <td>{{ item.productName }}</td>
+                                <td class="text-center">R$ {{ item.productPrice | number_format(2, ',', '.') }}</td>
+                                <td class="text-center">
+                                    {% if (item.quantity > 0) %}
+                                        <a href="#">-</a>
+                                    {% endif %}
+                                    {{ item.quantity }}
+                                    <a href="#">+</a>
+                                </td>
+                                <td class="text-center">R$ {{ item.calculateTotal | number_format(2, ',', '.') }}</td>
+                                <td>Remover</td>
+                            </tr>
+                        {% endfor %}
+
+                        <tr>
+                            <td colspan="3"><h4>Total</h4></td>
+                            <td class="text-center"><h4>R$ {{ cart.calculateTotal | number_format(2, ',', '.') }}</h4>
+                            </td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 text-right">
+                    <a href="#" class="btn btn-primary">Continuar comprando</a>
+                    <a href="#" class="btn btn-success">Finalizar</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

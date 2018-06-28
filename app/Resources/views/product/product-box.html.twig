@@ -7,6 +7,6 @@
             <a href="{{ url('product-detail', {'slug': product.slug}) }}" title="{{ product.name }}">{{ product.name }}</a>
         </h4>
         <span class="product-price">R$ {{ product.price }}</span>
-        <button class="btn btn-success">Comprar</button>
+        <a href="{{ url('cart-add-item', {'id': product.id}) }}" class="btn btn-success">Comprar</a>
     </div>
 </div>

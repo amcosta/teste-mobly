@@ -8,10 +8,14 @@
 
 namespace AppBundle\Services\Cart;
 
+use JMS\Serializer\Annotation as Serializer;
+
 class CartItem
 {
     /**
      * @var ProductInterface
+     *
+     * @Serializer\Type("AppBundle\Entity\Product")
      */
     private $product;
 
