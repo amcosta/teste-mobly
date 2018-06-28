@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>
+                    Para continuar faça o login no sistema, se você não tem uma conta ainda <a href="#">clique aqui</a>
+                </p>
+            </div>
+        </div>
+
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ url('login') }}" method="post">
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="email">Email: </label>
+                    <input type="email" name="_username" class="form-control" id="email" required/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="password">Senha: </label>
+                    <input type="password" name="_password" class="form-control" id="password" required/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
