@@ -10,9 +10,11 @@ class HeaderController extends Controller
     public function indexAction()
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        $cart = $this->get('app.cart.helper')->getCart();
 
         return $this->render('header.html.twig', [
-            'categories' => $categories
+            'categories' => $categories,
+            'cart' => $cart
         ]);
     }
 }
