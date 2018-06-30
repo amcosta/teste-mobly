@@ -29,7 +29,6 @@ class SecurityController extends Controller
 
     /**
      * @Route(path="logout", name="logout", methods={"GET", "POST"})
-     *
      */
     public function logoutAction()
     {

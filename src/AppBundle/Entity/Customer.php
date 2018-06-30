@@ -22,5 +22,21 @@ class Customer extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string")
+     */
+    private $name;
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
 }
 
