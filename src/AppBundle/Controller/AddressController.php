@@ -27,7 +27,7 @@ class AddressController extends Controller
 
         $form->handleRequest($request);
 
-        if (!$form->isSubmitted() || $form->isValid()) {
+        if (!$form->isSubmitted() || !$form->isValid()) {
             return $this->render('customer/address.html.twig', ['form' => $form->createView()]);
         }
 

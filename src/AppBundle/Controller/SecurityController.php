@@ -49,7 +49,7 @@ class SecurityController extends Controller
         $this->getDoctrine()->getManager()->persist($customer);
         $this->getDoctrine()->getManager()->flush();
 
-        $token = new UsernamePasswordToken($customer->getEmail(), $customer->getPassword(), 'main', $customer->getRoles());
+        $token = new UsernamePasswordToken($customer, null, 'main', $customer->getRoles());
         $this->get('security.token_storage')->setToken($token);
 
         $this->get('session')->set('_security_main', serialize($token));
