@@ -20,7 +20,7 @@ security:
             pattern: ^/
             form_login:
                 login_path: /login
-                check_path: /login
+                check_path: /check-login
                 provider: customer
 
             logout: true
@@ -35,4 +35,5 @@ security:
 
     access_control:
     - { path: ^/checkout, roles: ROLE_USER }
+    - { path: ^/minha-conta, roles: ROLE_USER }
     - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

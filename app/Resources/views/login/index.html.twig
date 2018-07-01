@@ -11,31 +11,72 @@
             </div>
         </div>
 
-        {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        <form action="{{ url('login') }}" method="post">
-            <div class="row">
-                <div class="col-md-4 form-group">
-                    <label for="email">Email: </label>
-                    <input type="email" name="_username" class="form-control" id="email" required/>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {% if error %}
+                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                    </div>
                 </div>
+
+                <form action="{{ url('check-login') }}" method="post">
+                    <div class="row">
+                        <div class="col-md-8 form-group">
+                            <label for="email">Email: </label>
+                            <input type="email" name="_username" class="form-control" id="email" required/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8 form-group">
+                            <label for="password">Senha: </label>
+                            <input type="password" name="_password" class="form-control" id="password" required/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <div class="row">
-                <div class="col-md-4 form-group">
-                    <label for="password">Senha: </label>
-                    <input type="password" name="_password" class="form-control" id="password" required/>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary">Entrar</button>
-                </div>
-            </div>
+            <div class="col-md-6">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_label(form.name, 'Nome') }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control form-group'}}) }}
+                        {{ form_errors(form.name) }}
+                    </div>
 
-        </form>
+                    <div class="col-md-12">
+                        {{ form_label(form.email, 'Email') }}
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control form-group'}}) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form_label(form.plainPassword.first, 'Senha') }}
+                        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control form-group'}}) }}
+                        {{ form_errors(form.plainPassword) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form_label(form.plainPassword.second, 'Confirme a senha') }}
+                        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control form-group'}}) }}
+                    </div>
+
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
 {% endblock %}

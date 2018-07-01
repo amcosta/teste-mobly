@@ -13,6 +13,8 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class Customer extends BaseUser
 {
+    const ROLE_DEFAULT = 'ROLE_USER';
+
     /**
      * @var int
      *
@@ -37,6 +39,25 @@ class Customer extends BaseUser
     public function getName()
     {
         return $this->name;
+    }
+
+    public function updateUsername()
+    {
+        if (!empty($this->username)) {
+            return;
+        }
+
+        $this->username = $this->email;
+    }
+
+    public function enable()
+    {
+        $this->enabled = true;
+    }
+
+    public function disable()
+    {
+        $this->enabled = false;
     }
 }
 
