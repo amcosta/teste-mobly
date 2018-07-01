@@ -1,0 +1,77 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Informe seu endereço</h2>
+            </div>
+        </div>
+
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-md-8">
+                        {{ form_label(form.name, 'Nome do endereço') }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-group form-control', 'placeholder': 'Ex.: Casa ou Trabalho'}}) }}
+                        {{ form_errors(form.name) }}
+                    </div>
+
+                    <div class="col-md-4 input-group">
+                        {{ form_label(form.zipCode, 'Cep') }}
+                        {{ form_widget(form.zipCode, {'attr': {'class': 'form-group form-control'}}) }}
+                        {{ form_errors(form.zipCode) }}
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Pesquisar</button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        {{ form_label(form.street, 'Logradouro') }}
+                        {{ form_widget(form.street, {'attr': {'class': 'form-group form-control'}}) }}
+                        {{ form_errors(form.street) }}
+                    </div>
+
+                    <div class="col-md-2">
+                        {{ form_label(form.streetNumber, 'Número') }}
+                        {{ form_widget(form.streetNumber, {'attr': {'class': 'form-group form-control'}}) }}
+                        {{ form_errors(form.streetNumber) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_label(form.complement, 'Complemento') }}
+                        {{ form_widget(form.complement, {'attr': {'class': 'form-group form-control'}}) }}
+                        {{ form_errors(form.complement) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        {{ form_label(form.neighborhood, 'Bairro') }}
+                        {{ form_widget(form.neighborhood, {'attr': {'class': 'form-group form-control'}}) }}
+                        {{ form_errors(form.neighborhood) }}
+                    </div>
+
+                    <div class="col-md-5">
+                        {{ form_label(form.city, 'Cidade') }}
+                        {{ form_widget(form.city, {'attr': {'class': 'form-group form-control'}}) }}
+                        {{ form_errors(form.city) }}
+                    </div>
+
+                    <div class="col-md-2">
+                        {{ form_label(form.state, 'UF') }}
+                        {{ form_widget(form.state, {'attr': {'class': 'form-group form-control'}}) }}
+                        {{ form_errors(form.state) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
