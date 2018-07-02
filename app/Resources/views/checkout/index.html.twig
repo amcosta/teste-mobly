@@ -1,5 +1,73 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    Checkout
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Checkout</h2>
+            </div>
+        </div>
+
+        {{ form_start(form) }}
+
+        <div class="hidden">
+            {{ form_row(form.shipping) }}
+            {{ form_row(form.deliveryAddress) }}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="deliveryAddress">Selecione o endereço de entrega</label>
+                        <select class="form-group form-control" name="appbundle_sale[deliveryAddress]"
+                                id="deliveryAddress">
+                            {% for address in addresses %}
+                                <option value="{{ address.id }}">{{ address.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th class="text-center">Quantidade</th>
+                        <th class="text-center">SubTotal</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for item in sale.items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td class="text-center">{{ item.quantity }}</td>
+                            <td class="text-center">R$ {{ item.calculateTotal | number_format(2, ',', '.') }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr>
+                        <td colspan="2">Frete</td>
+                        <td class="text-center">R$ {{ sale.shipping | number_format(2, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><h4>Total</h4></td>
+                        <td class="text-center"><h4>R$ {{ sale.calculateSubTotal | number_format(2, ',', '.') }}</h4>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-right">
+                <button type="submit" class="btn btn-success">Finalizar</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
