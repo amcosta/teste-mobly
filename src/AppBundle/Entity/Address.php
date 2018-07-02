@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Address
@@ -81,6 +82,7 @@ class Address
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
@@ -88,13 +90,14 @@ class Address
      * @var \DateTime
      *
      * @ORM\Column(name="updated", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updated;
 
     /**
      * @var Customer
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="addresses")
      */
     private $customer;
 

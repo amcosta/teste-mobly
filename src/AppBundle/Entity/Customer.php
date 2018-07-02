@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -31,6 +32,13 @@ class Customer extends BaseUser
      */
     private $name;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Address", mappedBy="customer")
+     */
+    private $addresses;
+
     public function setName($name)
     {
         $this->name = $name;
@@ -58,6 +66,11 @@ class Customer extends BaseUser
     public function disable()
     {
         $this->enabled = false;
+    }
+
+    public function getAddresses()
+    {
+        return $this->addresses;
     }
 }
 

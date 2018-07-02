@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Pedido</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for purchase in purchases %}
+                        <tr>
+                            <td>{{ purchase.created.format('d/m/Y') }}</td>
+                            <td>{{ purchase.id }}</td>
+                            <td>{{ purchase.status.name }}</td>
+                            <td><a href="{{ url('customer-purchase', {'id': purchase.id}) }}">ver detalhe</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

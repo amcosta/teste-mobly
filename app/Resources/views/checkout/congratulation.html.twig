@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>Parabéns sua compra foi realizada com sucesso, o número do seu pedido é
+                    <strong>{{ sale.id }}</strong></p>
+
+                <p>Para ver os seus pedidos <a href="{{ url('customer-purchases') }}">clique aqui</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
