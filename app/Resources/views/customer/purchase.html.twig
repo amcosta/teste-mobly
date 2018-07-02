@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>
+                    <strong>Status:</strong><br/>
+                    {{ purchase.status.name }}
+                </p>
+
+                <p>
+                    <strong>Valor do frete:</strong><br/>
+                    R$ {{ purchase.shipping | number_format(2, ',', '.') }}
+                </p>
+
+                <p>
+                    <strong>Valor total:</strong><br/>
+                    R$ {{ purchase.calculateTotal | number_format(2, ',', '.') }}
+                </p>
+            </div>
+
+            <div class="col-xs-12">
+                <strong>Itens da compra</strong>
+            </div>
+
+            <div class="col-xs-12">
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th class="text-center">Quantidade</th>
+                        <th class="text-center">SubTotal</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for item in purchase.items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td class="text-center">{{ item.quantity }}</td>
+                            <td class="text-center">R$ {{ item.calculateTotal | number_format(2, ',', '.') }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
